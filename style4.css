@@ -1,0 +1,39 @@
+*{
+    margin : 0%;
+    padding: 0%;
+}
+
+html,body{
+    height : 100%;
+    width : 100%;
+}
+
+/* yha tak jo code likha hai abhi  vo css ka boiler plate hai  */
+
+body {
+    background-color: #fbb4b4;
+    display: flex;
+    align-items: center; 
+    justify-content:center;
+}
+div{
+    width: 200px;
+    height: 200px;
+    font-size: x-large;
+    display: flex;
+    text-align: center;
+    align-items: center; 
+    /* justify-content:center; */
+}
+#box1{
+    background-color: rgb(176, 128, 70);
+    border-style: solid;
+    border-width: 3px ;
+    border-radius: 50%;
+}
+#box2{
+    background-color: red;
+    border-radius: 50%;
+     border-style: solid;
+    border-width: 3px ;
+}
