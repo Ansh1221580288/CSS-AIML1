@@ -10,39 +10,50 @@ html,body{
 .main{
     height: 100%;
     width: 100%;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .card{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50% , -50%);
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50% , -50%); */
     height: 300px;
     width: 230px;
     border:1px solid salmon;
     border-radius: 20px;
+
+    /* jo bhi card ke bahar cheej aa rhi usko fit krne ke liye ya to same border radius de do jo ki maine img selector ke ander de rkha  hai isliye yha ka overflow hidden comment kar rakaha hai maine 
+     ya overflow hidden use kar ke ham overflow rok skte hai  */
+
+    /* overflow: hidden; */
 }
-.card1:hover{
-    background-color: red;
+
+
+.card:hover{
+       z-index: 5;
+}
+
+.card1{
+    z-index:4;
 }
 
 .card2{
-    rotate:-8deg;
-   
-}
-.card2:hover{
-    background-color: blue;
+    z-index:3;
+    rotate:-7deg;
 }
 .card3{
-   rotate:-16deg;
+    z-index:2;
+    rotate:-14deg; 
 }
-.card3:hover{
-    background-color:green;
-}
-
 .card4{
-   rotate:-24deg;
-}
-.card4:hover{
-    background-color:yellow;
+    z-index:1;
+    rotate:-21deg;
+   }
+img{
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
 }
