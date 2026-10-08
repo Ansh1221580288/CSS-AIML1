@@ -3,11 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>External CSS Use  </title>
-    <link rel="stylesheet" href="style4.css">
+    <title>Happy Birthday Arzoo! ✨💖 | Special Surprise Wish</title>
+    <meta name="description" content="A magical interactive birthday surprise website created specially for you with love, music, interactive candles, secret letters, and Reel-style games.">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-     <div id="box1"><h4>Mai hu box number 01 </h4> </div>
-     <div id="box2"><h4> Mai hu box number 02 </h4></div>
+
+    <!-- Canvas Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Ambient Glowing Orbs -->
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Unified Fixed Top Navigation Header -->
+    <header class="main-header">
+        <div class="header-logo">
+            <span class="logo-heart">💖</span> Happy Birthday!
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-target="hero"><i class="fas fa-home"></i> Home</button>
+            <button class="tab-btn" data-target="cake-section"><i class="fas fa-birthday-cake"></i> Cake</button>
+            <button class="tab-btn" data-target="letter-section"><i class="fas fa-envelope-open-text"></i> Letter</button>
+            <button class="tab-btn" data-target="song-section"><i class="fas fa-music"></i> Song</button>
+            <button class="tab-btn" data-target="polaroid-section"><i class="fas fa-images"></i> Memories</button>
+            <button class="tab-btn" data-target="games-section"><i class="fas fa-gamepad"></i> Games</button>
+            <button class="tab-btn" data-target="quiz-section"><i class="fas fa-heart"></i> Reel Quiz</button>
+            <button class="tab-btn" data-target="builder-section"><i class="fas fa-paint-brush"></i> Custom Card</button>
+        </nav>
+
+        <div class="header-controls">
+            <button class="music-btn" id="music-toggle" title="Toggle Background Music">
+                <i class="fas fa-music"></i> Play Music 🎵
+            </button>
+        </div>
+    </header>
+
+    <!-- App Container -->
+    <main class="app-container">
+
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero">
+            <div class="hero-subtitle">✨ A Special Birthday Wish For ✨</div>
+            <h1 class="hero-title">Happy Birthday, <br><span class="hero-name">Arzoo</span></h1>
+
+            <!-- Arzoo Real Photo Spotlight -->
+            <div class="arzoo-spotlight-wrapper">
+                <div class="arzoo-crown-badge">👑</div>
+                <img src="assets/arzoo_photo.png" alt="Arzoo Birthday Girl" class="arzoo-spotlight-img">
+            </div>
+
+            <div class="gift-box-wrapper" id="gift-wrapper" title="Click to Unwrap Your Surprise!">
+                <img src="assets/gift.jpg" alt="Birthday Gift Box for Arzoo" class="gift-card-img" style="width: 140px; height: 140px;">
+            </div>
+
+            <div class="unwrap-hint">
+                <i class="fas fa-sparkles"></i> Click the Gift Box to Unwrap Your Surprise! 🎁
+            </div>
+        </section>
+
+        <!-- Cake & Candle Blowing Section -->
+        <section class="section-card" id="cake-section">
+            <h2 class="section-title">🎂 Make a Wish & Blow the Candles 🕯️</h2>
+            <p class="section-subtitle">Click on each candle or blow them all to unlock a secret surprise!</p>
+
+            <div class="cake-stage">
+                <div class="candles-row">
+                    <div class="candle" title="Click to blow candle"><div class="flame"></div><div class="smoke"></div></div>
+                    <div class="candle" title="Click to blow candle"><div class="flame"></div><div class="smoke"></div></div>
+                    <div class="candle" title="Click to blow candle"><div class="flame"></div><div class="smoke"></div></div>
+                    <div class="candle" title="Click to blow candle"><div class="flame"></div><div class="smoke"></div></div>
+                    <div class="candle" title="Click to blow candle"><div class="flame"></div><div class="smoke"></div></div>
+                </div>
+
+                <div class="cake-container">
+                    <div class="cake-tier cake-tier-1">
+                        <div class="frosting-drip"></div>
+                    </div>
+                    <div class="cake-tier cake-tier-2">
+                        <div class="frosting-drip"></div>
+                    </div>
+                    <div class="cake-tier cake-tier-3">
+                        <div class="frosting-drip"></div>
+                    </div>
+                </div>
+
+                <div class="cake-actions">
+                    <button class="action-btn" id="blow-candles-btn">
+                        <i class="fas fa-wind"></i> ✨ Blow All Candles
+                    </button>
+                </div>
+
+                <div class="wish-unlocked-banner" id="wish-banner">
+                    <h3 style="color: var(--accent-gold); font-size: 1.6rem;">🎉 Wish Granted! 🎉</h3>
+                    <p style="margin-top: 5px;">May all your secret wishes come true today and forever! ✨💖</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wax Envelope & Secret Letter Section -->
+        <section class="section-card" id="letter-section">
+            <h2 class="section-title">💌 A Heartfelt Birthday Letter For You</h2>
+            <p class="section-subtitle">Click the wax seal below to open your personalized letter...</p>
+
+            <div class="letter-stage">
+                <div class="envelope-wrapper">
+                    <div class="envelope-seal" id="envelope-seal" title="Break the Seal to Read!">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="letter-content" id="letter-content"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Song Section: Ehsaan Tera Hoga Mujhpe (Lata Mangeshkar) -->
+        <section class="section-card" id="song-section">
+            <h2 class="section-title">🎶 Dedicated Song For You 💖</h2>
+            <p class="section-subtitle">"Ehsaan Tera Hoga Mujhpe" — Sung by Lata Mangeshkar</p>
+
+            <div class="music-player-card">
+                <div class="vinyl-disc" id="vinyl-disc">
+                    <div class="vinyl-center"></div>
+                </div>
+                <div class="song-info">
+                    <div class="song-title">Ehsaan Tera Hoga Mujhpe ✨</div>
+                    <div class="song-artist">Singer: Lata Mangeshkar 🎤 (Junglee 1961)</div>
+                    <div class="song-lyric-box">"Ehsaan tera hoga mujhpe, dil chahta hai jo kehne do... Mujhe tumse pyaar ho gaya hai, mujhe apne dil mein rehne do..." 💖</div>
+
+                    <div class="audio-player-wrapper" style="margin-top: 25px;">
+                        <!-- Direct Local MP3 Audio Stream for Ehsaan Tera Hoga Mujhpe -->
+                        <audio id="ehsaan-song-audio" src="assets/song.mp3" controls style="width: 100%; max-width: 440px; border-radius: 30px; box-shadow: 0 0 25px var(--primary-glow);"></audio>
+
+                        <div style="margin-top: 15px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+                            <button class="action-btn" id="play-song-btn">
+                                <i class="fas fa-play"></i> Play Song Track 🎵
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expressing Feelings Confession Section -->
+        <section class="section-card" id="confession-section">
+            <h2 class="section-title">💖 A Secret From My Heart For You</h2>
+            <p class="section-subtitle">Something I have wanted to tell you for a long time...</p>
+
+            <div class="confession-card">
+                <img src="assets/arzoo_photo.png" alt="Arzoo" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-gold); margin-bottom: 10px;">
+                <div class="confession-text">
+                    "Arzoo, you are the most special person I have ever known.<br>
+                    Every moment with you feels like magic, and your smile makes my world complete.<br>
+                    Happy Birthday to the girl who stole my heart!" 🌹
+                </div>
+            </div>
+        </section>
+
+        <!-- Polaroid Reasons Section (6 UNIQUE MATCHING IMAGES) -->
+        <section class="section-card" id="polaroid-section">
+            <h2 class="section-title">✨ 6 Reasons Why You Are So Special ✨</h2>
+            <p class="section-subtitle">Hover or tap each memory polaroid to discover sweet compliments!</p>
+
+            <div class="polaroid-grid">
+                <div class="polaroid-card">
+                    <div class="polaroid-img-box">
+                        <img src="assets/roses.jpg" alt="Your Bright Smile">
+                    </div>
+                    <div class="polaroid-caption">Your Bright Smile 💖</div>
+                    <div class="polaroid-desc">A smile that can effortlessly brighten up the darkest day.</div>
+                </div>
+
+                <div class="polaroid-card">
+                    <div class="polaroid-img-box">
+                        <img src="assets/bg.jpg" alt="Your Kind Heart">
+                    </div>
+                    <div class="polaroid-caption">Your Kind Heart 🌸</div>
+                    <div class="polaroid-desc">The gentle, compassionate energy you bring to everyone.</div>
+                </div>
+
+                <div class="polaroid-card">
+                    <div class="polaroid-img-box">
+                        <img src="assets/gift.jpg" alt="Your Pure Magic">
+                    </div>
+                    <div class="polaroid-caption">Your Pure Magic ✨</div>
+                    <div class="polaroid-desc">How every simple moment becomes memorable around you.</div>
+                </div>
+
+                <div class="polaroid-card">
+                    <div class="polaroid-img-box">
+                        <img src="assets/guitar.jpg" alt="Your Sweet Laugh">
+                    </div>
+                    <div class="polaroid-caption">Your Sweet Laugh 🎶</div>
+                    <div class="polaroid-desc">The most soothing and adorable melody in the world.</div>
+                </div>
+
+                <div class="polaroid-card">
+                    <div class="polaroid-img-box">
+                        <img src="assets/butterflies.jpg" alt="Your Unique Grace">
+                    </div>
+                    <div class="polaroid-caption">Your Unique Grace 🌟</div>
+                    <div class="polaroid-desc">Elegance, charm, and warmth wrapped in one wonderful person.</div>
+                </div>
+
+                <div class="polaroid-card">
+                    <div class="polaroid-img-box">
+                        <img src="assets/arzoo_photo.png" alt="Just Being You">
+                    </div>
+                    <div class="polaroid-caption">Just Being You 👑</div>
+                    <div class="polaroid-desc">Because there is nobody else in the whole universe like you!</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Mini-Games Section -->
+        <section class="section-card" id="games-section">
+            <h2 class="section-title">🎮 Interactive Games For You 💖</h2>
+            <p class="section-subtitle">Play these cute mini-games specially crafted for your birthday!</p>
+
+            <!-- Game 1: Pop Birthday Balloons -->
+            <div style="margin-bottom: 40px;">
+                <h3 style="color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 10px;">🎈 Game 1: Pop the Birthday Balloons!</h3>
+                <p style="color: var(--text-muted); margin-bottom: 15px;">Pop 8 floating balloons to unlock Your Birthday Crown!</p>
+                <div class="score-badge" style="position: relative; top: 0; display: inline-block; margin-bottom: 10px;">Score: <span id="balloon-score">0 / 8</span></div>
+                <div class="balloons-area" id="balloons-area"></div>
+            </div>
+
+            <!-- Game 2: Fortune Wheel -->
+            <div style="margin-bottom: 40px;">
+                <h3 style="color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 10px;">🎡 Game 2: Spin Your Fortune Wheel!</h3>
+                <p style="color: var(--text-muted); margin-bottom: 15px;">Spin the wheel to win a special birthday surprise!</p>
+                <div class="wheel-container">
+                    <div class="wheel-wrapper">
+                        <div class="wheel-pointer">▼</div>
+                        <canvas id="wheel-canvas" width="300" height="300"></canvas>
+                    </div>
+                    <button class="action-btn" id="spin-wheel-btn" style="margin-top: 25px;">
+                        <i class="fas fa-sync-alt"></i> 🎡 SPIN THE WHEEL!
+                    </button>
+                    <div class="wheel-result" id="wheel-result"></div>
+                </div>
+            </div>
+
+            <!-- Game 3: Catch Falling Hearts -->
+            <div style="margin-bottom: 40px;">
+                <h3 style="color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 10px;">💖 Game 3: Catch the Falling Hearts!</h3>
+                <p style="color: var(--text-muted); margin-bottom: 15px;">Tap the falling hearts to collect 10 love points!</p>
+                <div class="score-badge" style="position: relative; top: 0; display: inline-block; margin-bottom: 10px;">Hearts Caught: <span id="catch-score">0 / 10</span></div>
+                <div class="catch-hearts-area" id="catch-hearts-area"></div>
+            </div>
+
+            <!-- Game 4: Compliment Box -->
+            <div>
+                <h3 style="color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 10px;">✨ Sweet Compliment Generator</h3>
+                <div class="compliment-box">
+                    <div class="compliment-text" id="compliment-text">Your smile has a way of lighting up the entire world! 💖</div>
+                    <button class="action-btn secondary" id="new-compliment-btn">
+                        <i class="fas fa-magic"></i> ✨ Tap for Another Cute Compliment
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instagram Reel Style Story Quiz & Questions Section -->
+        <section class="section-card" id="quiz-section">
+            <h2 class="section-title">📱 Reel Story: A Sweet Quiz For You 💖</h2>
+            <p class="section-subtitle">Answer these genuine questions asked straight from the heart...</p>
+
+            <div class="reel-story-card">
+                <div class="reel-header">
+                    <div class="reel-user">
+                        <img src="assets/arzoo_photo.png" alt="Arzoo" class="reel-avatar">
+                        <span class="reel-username">@for_you_special</span>
+                    </div>
+                    <span class="reel-badge">Birthday Reel 🎬</span>
+                </div>
+
+                <div class="quiz-card" id="quiz-container" style="background: transparent; padding: 0;">
+                    <!-- Reel Quiz rendered dynamically via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Customize Birthday Card Section -->
+        <section class="section-card" id="builder-section">
+            <h2 class="section-title">🎨 Write a Custom Wish For You</h2>
+            <p class="section-subtitle">Personalize your message and preview it live!</p>
+
+            <div class="card-builder">
+                <div class="form-group">
+                    <label class="form-label" for="input-name">Name / Nickname:</label>
+                    <input type="text" id="input-name" class="form-input" value="Arzoo" placeholder="Enter name...">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="input-msg">Special Birthday Wish:</label>
+                    <textarea id="input-msg" class="form-textarea" rows="3" placeholder="Write something sweet...">Wishing you a day full of joy, magic, laughter, and sweet memories!</textarea>
+                </div>
+
+                <div class="live-card-preview">
+                    <div class="preview-name" id="preview-name">Arzoo</div>
+                    <div class="preview-msg" id="preview-msg">Wishing you a day full of joy, magic, laughter, and sweet memories!</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Crafted with endless love & sparkles <strong>For You</strong> ✨ | Happy Birthday! 💖</p>
+        </footer>
+
+    </main>
+
+    <!-- Audio & Script files -->
+    <script src="audio.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
